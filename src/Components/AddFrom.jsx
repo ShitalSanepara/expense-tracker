@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 
   const { expense, setExpense } = useContext(MyContext);
 
-
   // Function to add new entry to the dataset and expense table  
   function addItem() { 
     // let type = itemType.value; 
@@ -21,29 +20,31 @@ import { ToastContainer, toast } from "react-toastify";
     console.log("amount, ", amount);
 
     setExpense([...expense, {"date": date, "descrption": descrption, "amount": amount}]);
+    // localStorage.setItem("MyExpenses", [...expense, {"date": date, "descrption": descrption, "amount": amount}]);
+
+    console.log([...expense, {"date": date, "descrption": descrption, "amount": amount}]);
 
     toast.success("Add Reacord !", {
         position: toast.POSITION.TOP_RIGHT,
     });
 
-    localStorage.setItem("date", "descrption", "amount");
-
+    localStorage.setItem("MyExpenses" , JSON.stringify([...expense, {"date": date, "descrption": descrption, "amount": amount}]));
+    //  const cat = localStorage.getItem("MyExpenses");
+   
+    //  console.log("cat, ", cat);
+    
   }
+
+  
   return (
     <div class="input-group">
-     
-          <div class="input-group-text mb-3">
-          
-           <label><input name="myInput" type="date" id="date"/>Date</label>
-           <label><input name="myInput" type="number" id="amount" />Amount</label>
-           <label><input name="myInput" id="descrption"/>Description</label>
+        <div class="input-group-text mb-3">
+           <label>Date<input name="myInput" type="date" id="date"/></label>
+           <label>Amount<input name="myInput" type="number" id="amount" /></label>
+           <label>Description<input name="myInput" id="descrption"/></label>
            <Button onClick={addItem}>Submit</Button>
-          </div>
-         
+        </div>
     </div>
-
-    
-    
   )
 }
 

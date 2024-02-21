@@ -2,7 +2,7 @@
 import './App.css';
 import {
   BrowserRouter,
-  Route,
+  Route, 
   Routes,
   Link
 } from "react-router-dom";
@@ -15,22 +15,35 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [expense, setExpense] = useState([
-    { date: "2023-01-01", descrption: "income", amount: 25000 }, 
-    { date: "2023-01-01", descrption: "rent", amount: 18000 }, 
-    { date: "2023-01-01", descrption: "food", amount: 5000 }, 
-  ]);
+  // localStorage.setItem("MyExpenses", JSON.stringify([]));
+  let data = localStorage.getItem("MyExpenses");
 
+  if (data == null){
+    data = [];   // empty
+    localStorage.setItem("MyExpenses", JSON.stringify([]));
+  }
+  else {
+    data = JSON.parse(data);
+  }
+
+  const [expense, setExpense] = useState(data);
+  
   return (
     <BrowserRouter>
+    <div className='row from'>
+    <div className='col-md-3'>
       <Navbar/>
+    </div>
+    <div className='col-md-9'>
       <MyContext.Provider value={{ expense, setExpense }}>
         <Routes>
           <Route index element={<AddFrom />} />
           <Route path="table" element={<Table />} />
         </Routes>
       </MyContext.Provider>
+      </div>
       <ToastContainer />
+      </div>
     </BrowserRouter>
     
   );
