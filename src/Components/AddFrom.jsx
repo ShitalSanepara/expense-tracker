@@ -39,9 +39,18 @@ import { ToastContainer, toast } from "react-toastify";
   return (
     <div class="input-group">
         <div class="input-group-text mb-3">
-           <label>Date<input name="myInput" type="date" id="date"/></label>
-           <label>Amount<input name="myInput" type="number" id="amount" /></label>
-           <label>Description<input name="myInput" id="descrption"/></label>
+          <div class="row">
+            <div class="col-25"><label>Date</label></div>
+            <div class="col-75"><input name="myInput" type="date" id="date"/></div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label>Amount</label></div>
+            <div class="col-75"><input name="myInput" type="number" id="amount" /></div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label>Description</label></div>
+            <div class="col-75"><input name="myInput" id="descrption"/></div>
+          </div>
            <Button onClick={addItem}>Submit</Button>
         </div>
     </div>
